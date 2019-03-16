@@ -19,4 +19,4 @@ net = SocialNetwork(100)
 for i in net.getGraph():
     print(i)
 print()
-print(find(net, 1, 1))
+print("Количество незнакомцев с заданным количеством общих знакомых: ", find(net, 1, 1))

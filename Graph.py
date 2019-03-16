@@ -7,7 +7,7 @@ class Vertex:
         self.connected[edge] = weight
 
     def __str__(self):
-        return str(self.key) + " connected: " + str([i.key for i in self.connected])
+        return str(self.key) + " Знает людей: " + str([i.key for i in self.connected])
 
     def __contains__(self, key)->bool:
         return key in self.connected
