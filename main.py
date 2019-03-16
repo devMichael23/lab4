@@ -15,7 +15,7 @@ def find(network:SocialNetwork, user, count):
     return strangers
 
 
-net = SocialNetwork(100)
+net = SocialNetwork(10)
 for i in net.getGraph():
     print(i)
 print()

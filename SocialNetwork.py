@@ -1,5 +1,6 @@
 from Graph import Graph, Vertex
 import random
+import time
 
 class SocialNetwork:
     def __init__(self, count):
@@ -7,13 +8,21 @@ class SocialNetwork:
         for i in range(1, count+1):
             self.graph.addVertex(i)
         for i in range(1, count+1):
-            for j in range(1, self.pickNumber()+1):
+            if self.graph.vertices[i].getCount() <= 2:
+                num = self.pickNumber(4)
+            else:
+                continue
+            for j in range(1, num+1):
                 ran = random.randint(1, count)
-                if ran in self.graph:
+                while ran in self.graph.vertices[i]:
                     ran = random.randint(1, count)
-                if ran == i:
+                while ran == i:
                     ran = random.randint(1, count)
-                self.graph.addEdge(i, ran)
+                if self.graph.vertices[i].getCount() > 3:
+                    continue
+                else:
+                    self.graph.addEdge(i, ran)
+                    self.graph.addEdge(ran, i)
 
     def getVertices(self, key):
         return self.graph.vertices[key]
@@ -24,5 +33,5 @@ class SocialNetwork:
     def getGraph(self):
         return self.graph
 
-    def pickNumber(self):
-        return int(random.randint(1, 4))
+    def pickNumber(self, last):
+        return int(random.randint(1, last))

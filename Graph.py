@@ -2,6 +2,7 @@ class Vertex:
     def __init__(self, key):
         self.key = key
         self.connected = {}
+        self.count = 0
 
     def addNeighbor(self, edge, weight=0):
         self.connected[edge] = weight
@@ -17,6 +18,9 @@ class Vertex:
 
     def getConnections(self)->int:
         return self.connected.keys()
+    
+    def getCount(self):
+        return self.count
 
     def getId(self):
         return self.key
@@ -33,6 +37,7 @@ class Graph:
         self.num += 1
         newVertex = Vertex(key)
         self.vertices[key] = newVertex
+        self.vertices[key].count += 1
         return newVertex
 
     def __contains__(self, key) -> bool:
@@ -44,6 +49,8 @@ class Graph:
         if toVertex not in self.vertices:
             self.addVertex(toVertex)
         self.vertices[fromVertex].addNeighbor(self.vertices[toVertex], weight)
+        self.vertices[fromVertex].count += 1
+        self.vertices[toVertex].count += 1
 
     def __iter__(self):
         return iter(self.vertices.values())
