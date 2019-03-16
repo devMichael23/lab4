@@ -4,7 +4,7 @@ def find(network:SocialNetwork, user, count):
     userFriends = network.graph.getVertexForKey(user)
     strangers = 0
     for man in network.graph:
-        if man.key != user and user not in network.graph.vertices[man.key]:
+        if man.key != user and user not in network.graph.getVertices(man.key):
             quantity = 0
             manFriends = network.graph.getVertexForKey(man.key)
             for f in userFriends:

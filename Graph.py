@@ -38,6 +38,9 @@ class Graph:
     def getVertexForKey(self, key):
         return self.vertices[key].connected.keys()
 
+    def getVertices(self, key):
+        return self.vertices[key]
+
     def __contains__(self, key) -> bool:
         return key in self.vertices
 
