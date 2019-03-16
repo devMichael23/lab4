@@ -1,12 +1,12 @@
 from SocialNetwork import SocialNetwork
 
 def find(network:SocialNetwork, user, count):
-    userFriends = network.network.vertices[user].connected.keys()
+    userFriends = network.graph.vertices[user].connected.keys()
     strangers = 0
-    for man in network.network:
-        if man.key != user and user not in network.network.vertices[man.key]:
+    for man in network.graph:
+        if man.key != user and user not in network.graph.vertices[man.key]:
             quantity = 0
-            manFriends = network.network.vertices[man.key].connected.keys()
+            manFriends = network.graph.vertices[man.key].connected.keys()
             for f in userFriends:
                 if f in manFriends:
                     quantity += 1
@@ -16,7 +16,7 @@ def find(network:SocialNetwork, user, count):
 
 
 net = SocialNetwork(10)
-for i in net.network:
+for i in net.graph:
     print(i)
 
 print(find(net, 1, 1))
