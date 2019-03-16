@@ -15,6 +15,12 @@ class SocialNetwork:
                     ran = random.randint(1, count)
                 self.graph.addEdge(i, ran)
 
+    def getVertices(self, key):
+        return self.graph.vertices[key]
+
+    def getVertexForKey(self, key):
+        return self.graph.vertices[key].connected.keys()
+
     def getNetwork(self):
         return self.graph
 

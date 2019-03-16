@@ -35,12 +35,6 @@ class Graph:
         self.vertices[key] = newVertex
         return newVertex
 
-    def getVertexForKey(self, key):
-        return self.vertices[key].connected.keys()
-
-    def getVertices(self, key):
-        return self.vertices[key]
-
     def __contains__(self, key) -> bool:
         return key in self.vertices
 
@@ -53,8 +47,3 @@ class Graph:
 
     def __iter__(self):
         return iter(self.vertices.values())
-
-dc = {}
-dc[1] = 1,2,3,4
-dc[2] = 5,6,7,8
-print(dc)

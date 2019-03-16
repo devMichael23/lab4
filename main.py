@@ -1,12 +1,12 @@
 from SocialNetwork import SocialNetwork
 
 def find(network:SocialNetwork, user, count):
-    userFriends = network.graph.getVertexForKey(user)
+    userFriends = network.getVertexForKey(user)
     strangers = 0
     for man in network.graph:
-        if man.key != user and user not in network.graph.getVertices(man.key):
+        if man.key != user and user not in network.getVertices(man.key):
             quantity = 0
-            manFriends = network.graph.getVertexForKey(man.key)
+            manFriends = network.getVertexForKey(man.key)
             for f in userFriends:
                 if f in manFriends:
                     quantity += 1
