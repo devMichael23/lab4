@@ -35,14 +35,8 @@ class Graph:
         self.vertices[key] = newVertex
         return newVertex
 
-    def getConnectionsVertex(self, key):
-        self.vertices[key].getConnections()
-
-    def getVertex(self, key):
-        if key in self.vertices:
-            return self.vertices[key]
-        else:
-            return None
+    def getVertexForKey(self, key):
+        return self.vertices[key].connected.keys()
 
     def __contains__(self, key) -> bool:
         return key in self.vertices
@@ -53,9 +47,6 @@ class Graph:
         if toVertex not in self.vertices:
             self.addVertex(toVertex)
         self.vertices[fromVertex].addNeighbor(self.vertices[toVertex], weight)
-
-    def getVertices(self):
-        return self.vertices.keys()
 
     def __iter__(self):
         return iter(self.vertices.values())
