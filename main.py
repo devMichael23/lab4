@@ -3,7 +3,7 @@ from SocialNetwork import SocialNetwork
 def find(network:SocialNetwork, user, count):
     userFriends = network.getVertexForKey(user)
     strangers = 0
-    for man in network.graph:
+    for man in network.getGraph():
         if man.key != user and user not in network.getVertices(man.key):
             quantity = 0
             manFriends = network.getVertexForKey(man.key)
@@ -15,8 +15,8 @@ def find(network:SocialNetwork, user, count):
     return strangers
 
 
-net = SocialNetwork(10)
-for i in net.graph:
+net = SocialNetwork(100)
+for i in net.getGraph():
     print(i)
-
+print()
 print(find(net, 1, 1))

@@ -21,7 +21,7 @@ class SocialNetwork:
     def getVertexForKey(self, key):
         return self.graph.vertices[key].connected.keys()
 
-    def getNetwork(self):
+    def getGraph(self):
         return self.graph
 
     def pickNumber(self):
