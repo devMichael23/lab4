@@ -1,12 +1,15 @@
 from Graph import Graph, Vertex
 import random
-import time
+import networkx as nx
+
 
 class SocialNetwork:
     def __init__(self, count):
         self.graph = Graph()
+        self.Graph = nx.Graph()
         for i in range(1, count+1):
             self.graph.addVertex(i)
+            self.Graph.add_node(i)
         for i in range(1, count+1):
             if self.graph.vertices[i].getCount() <= 2:
                 num = self.pickNumber(4)
@@ -23,6 +26,7 @@ class SocialNetwork:
                 else:
                     self.graph.addEdge(i, ran)
                     self.graph.addEdge(ran, i)
+                    self.Graph.add_edge(i, ran)
 
     def getVertices(self, key):
         return self.graph.vertices[key]
@@ -32,6 +36,9 @@ class SocialNetwork:
 
     def getGraph(self):
         return self.graph
+
+    def getDrawGraph(self):
+        return self.Graph
 
     def pickNumber(self, last):
         return int(random.randint(1, last))
