@@ -25,7 +25,7 @@ for i in net.getGraph():
 print()
 print("Количество незнакомцев с заданным количеством общих знакомых: ", find(net, 1, 1))
 
-nx.draw(net.getDrawGraph())
+nx.draw(net.getDrawGraph(), node_color='r', edge_color='purple', node_size=300, font_weight='normal', font_size=7, with_labels=True)
 plt.show()
 
 print()
