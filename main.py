@@ -18,15 +18,29 @@ def find(network:SocialNetwork, user, count)->(list, int):
                 strangers.append(man.key)
     return strangers, strangerCount
 
+def listOfColor(lst:list, count)->list:
+    lstColors = []
+    i=0
+    while i < count:
+        lstColors.append('purple')
+        i += 1
+    for j in lst:
+        if j == 0:
+            lstColors[j] == 'r'
+        else:
+            lstColors[j-1]='r'
+    return lstColors
 
-net = SocialNetwork(100)
+
+net = SocialNetwork(250)
 for i in net.getGraph():
     print(i)
+
 print()
 print("Количество незнакомцев с заданным количеством общих знакомых: ", find(net, 1, 1))
 
-nx.draw(net.getDrawGraph(), node_color='r', edge_color='purple', node_size=300, font_weight='normal', font_size=7, with_labels=True)
+lstColor, count = find(net,1,1)
+
+nx.draw(net.getDrawGraph(), node_color=listOfColor(lstColor, 250), edge_color='blue', node_size=300, font_weight='normal', font_size=7, with_labels=True)
 plt.show()
 
-print()
-print("Количество незнакомцев с заданным количеством общих знакомых: ", find(net, 1, 1))
