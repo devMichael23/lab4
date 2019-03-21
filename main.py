@@ -20,7 +20,7 @@ def find(network:SocialNetwork, user, count)->list:
     return strangers
 
 #lst - список незнакомцев, count - число вершин графа
-def listOfColor(lst:list, count)->list:
+def listOfColor(lst:list, count, user)->list:
     lstColors = []
     i=0
     while i < count:
@@ -28,14 +28,14 @@ def listOfColor(lst:list, count)->list:
         i += 1
     for j in lst:
         lstColors[j]='r'
+    lstColors[user] = 'green'
     return lstColors
 
 
 net = SocialNetwork(countUser)
 
 lstColor = find(net,1,1)
-print(find(net, 1,1))
 
-nx.draw(net.getGraph(), node_size=300, node_color=listOfColor(lstColor, countUser), edge_color='blue', font_color='yellow', font_weight='normal', font_size=7, with_labels=True)
+nx.draw(net.getGraph(), node_size=300, node_color=listOfColor(lstColor, countUser, 1), edge_color='blue', font_color='yellow', font_weight='normal', font_size=7, with_labels=True)
 plt.show()
 
