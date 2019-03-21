@@ -3,23 +3,28 @@ import networkx as nx
 
 
 class SocialNetwork:
-    def __init__(self, countUser, countEdge):
+    def __init__(self, countUser):
         self.countUser = countUser
-        self.countEdge = countEdge
-        self.Graph = nx.Graph()
-        for i in range(1, self.countUser+1):
-            self.Graph.add_node(i)
-        for i in range(1, self.countUser+1):
-            leng = (2*countEdge)/(countUser*(countUser-1))
-            if leng >= 1:
-                continue
-            else:
-                ran = random.randint(1, self.countUser)
-                while ran in self.Graph[i]:
-                    ran = random.randint(1, self.countUser)
-                while ran == i:
-                    ran = random.randint(1, self.countUser)
-                if leng > 3:
-                    continue
-                else:
-                    self.Graph.add_edge(i, ran)
+        self.graph = nx.Graph()
+        for i in range(self.countUser):
+            self.graph.add_node(i)
+        for i in range(self.countUser):
+            neighbors = len(list(self.graph.neighbors(i)))
+            if neighbors < 4:
+                edges = random.randint(1, 4 - neighbors)
+                while edges > 0:
+                    neighbor = random.randint(0, self.countUser-1)
+                    if neighbor == i or len(list(self.graph.neighbors(neighbor))) > 3:
+                        continue
+                    else:
+                        self.graph.add_edge(i, neighbor)
+                        edges -= 1
+
+    def getGraph(self):
+        return self.graph
+
+    def getNeighbors(self, key):
+        return self.graph.neighbors(key)
+
+    def getNodes(self):
+        return self.graph.nodes()
