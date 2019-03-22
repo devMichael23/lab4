@@ -3,7 +3,7 @@ import networkx as nx
 
 
 class SocialNetwork:
-    def __init__(self, countUser):
+    def __init__(self, countUser:int):
         self.countUser = countUser
         self.graph = nx.Graph()
         for i in range(self.countUser):
@@ -23,7 +23,7 @@ class SocialNetwork:
     def getGraph(self):
         return self.graph
 
-    def getNeighbors(self, key):
+    def getNeighbors(self, key:int):
         return self.graph.neighbors(key)
 
     def getNodes(self):
