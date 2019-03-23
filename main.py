@@ -1,8 +1,11 @@
 from SocialNetwork import SocialNetwork
 import matplotlib.pyplot as plt
 import networkx as nx
+import random
+import pylab as pl
+pl.ion()
 
-countUser = 250
+countUser = 100
 
 def find(network:SocialNetwork, user:int, count:int)->list:
     userFriends = list(network.getNeighbors(user))
@@ -31,22 +34,20 @@ def listOfColor(lst:list, count:int, user:int)->list:
     lstColors[user] = 'green'
     return lstColors
 
-def listOfLen(network:SocialNetwork):
-    lstLeng = []
-    for i in range(len(list(network.getNodes()))):
-        n = 0
-        for j in network.getNeighbors(i):
-            n += 1
-        lstLeng.append(n)
-    return lstLeng
+def main(network:SocialNetwork, ls):
+
+    nx.draw(network.getGraph(), node_size=300, node_color=ls, edge_color='blue', font_color='yellow', font_weight='normal', font_size=7, with_labels=True)
 
 
 net = SocialNetwork(countUser)
+size = len(list(net.getNodes()))
 
-lstColor = find(net,1,1)
-
-print(listOfLen(net), '\nMax: ', max(listOfLen(net)), '\nMin: ', min(listOfLen(net)))
-
-nx.draw(net.getGraph(), node_size=300, node_color=listOfColor(lstColor, countUser, 1), edge_color='blue', font_color='yellow', font_weight='normal', font_size=7, with_labels=True)
 plt.show()
+
+for i in range(size):
+    pl.clf()
+    ls = listOfColor(find(net, i, 1), countUser, i)
+    main(net, ls)
+    pl.show()
+    pl.pause(1)
 
